@@ -10,12 +10,15 @@ _M.base = config.url
 _M.format = config.format
 log.outfile = 'logs/osrm_'..os.date('%Y-%m-%d')..'.log' 
 log.level = 'trace'	
-_M.defaults = {
-	['generate_hints'] = true,
-	['snapping'] = 'default',
-	['skip_waypoints'] = false
-}
 _M.profile = 'driving' -- location /route/v1/driving       location /route/v1/walking        location /route/v1/cycling 
+
+function defaults()
+	return {
+		['generate_hints'] = true,
+		['snapping'] = 'default',
+		['skip_waypoints'] = false
+	}
+end
 
 function coordinates(coords)
 	if coords[1] then
@@ -86,7 +89,7 @@ end
 
 function _M.route(coords,profile,options)
 	if not options then 
-		options = _M.defaults 
+		options = defaults()
 		options['alternatives'] = false
 		options['steps'] = false
 		options['annotations'] = false
@@ -99,7 +102,7 @@ end
 
 function _M.nearest(coords,profile,options)
 	if not options then 
-		options = _M.defaults 
+		options = defaults()
 		oprions['number'] = 1
 	end
 	return get('nearest',coords,profile,options)
@@ -107,7 +110,7 @@ end
 
 function _M.table(coords,profile,options)
 	if not options then 
-		options = _M.defaults 
+		options = defaults()
 		options['annotations'] = 'duration'
 		options['fallback_coordinate'] = 'input'
 	end
@@ -116,7 +119,7 @@ end
 
 function _M.match(coords,profile,options)
 	if not options then 
-		options = _M.defaults
+		options = defaults()
 		options['steps'] = false
 		options['geometries'] = 'polyline'
 		options['annotations'] = false
@@ -129,7 +132,7 @@ end
 
 function _M.trip(coords,profile,options)
 	if not options then 
-		options = _M.defaults
+		options = defaults()
 		options['roundtrip'] = true
 		options['source'] = 'any'
 		options['destination'] = 'any'
