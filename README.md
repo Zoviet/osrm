@@ -1,4 +1,4 @@
-# OSRM Router Lua SDK
+# OSRM (Open Source Routing Machine) API Lua SDK
 
 API: https://project-osrm.org/docs/v5.24.0/api/
 
