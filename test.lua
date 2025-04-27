@@ -10,3 +10,6 @@ if not err then print(json.encode(res)) else print(json.encode(res)..err) end
 
 res,err = api.table({{50.1169,53.1912},{50.1661,53.2172},{50.0839,53.1881},{50.128,53.1985},{50.1057,53.1846}})
 if not err then print(json.encode(res)) else print(json.encode(res)..err) end
+
+res,err = api.table({{50.1169,53.1912},{50.1661,53.2172},{50.0839,53.1881},{50.128,53.1985},{50.1057,53.1846}},'driving',{['sources']=0,['destinations']=4})
+if not err then print(json.encode(res)) else print(json.encode(res)..err) end
