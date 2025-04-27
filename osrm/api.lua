@@ -58,6 +58,7 @@ function get(service,coords,profile,options)
 	else
 		url =  _M.base..service..'/'..config.version..'/'..profile..'/'..coordinates(coords)..query(options)
 	end
+
 	local headers = {
 		'Content-type: application/json',
 		'Accept: application/json'	
@@ -83,61 +84,61 @@ function get(service,coords,profile,options)
 	return res
 end
 
-function _M.route(coords,profile,options_route)
-	if not options_route then 
-		options_route = _M.defaults 
-		options_route['alternatives'] = false
-		options_route['steps'] = false
-		options_route['annotations'] = false
-		options_route['geometries'] = 'polyline'
-		options_route['overview'] = 'simplified'
-		options_route['continue_straight'] = 'default'
+function _M.route(coords,profile,options)
+	if not options then 
+		options = _M.defaults 
+		options['alternatives'] = false
+		options['steps'] = false
+		options['annotations'] = false
+		options['geometries'] = 'polyline'
+		options['overview'] = 'simplified'
+		options['continue_straight'] = 'default'
 	end
-	return get('route',coords,profile,options_route)
+	return get('route',coords,profile,options)
 end
 
-function _M.nearest(coords,profile,options_nearest)
-	if not options_nearest then 
-		options_nearest = _M.defaults 
+function _M.nearest(coords,profile,options)
+	if not options then 
+		options = _M.defaults 
 		oprions['number'] = 1
 	end
-	return get('nearest',coords,profile,options_nearest)
+	return get('nearest',coords,profile,options)
 end
 
-function _M.table(coords,profile,options_table)
-	if not options_table then 
-		options_table = _M.defaults 
-		options_table['annotations'] = 'duration'
-		options_table['fallback_coordinate'] = 'input'
+function _M.table(coords,profile,options)
+	if not options then 
+		options = _M.defaults 
+		options['annotations'] = 'duration'
+		options['fallback_coordinate'] = 'input'
 	end
-	return get('table',coords,profile,options_table)
+	return get('table',coords,profile,options)
 end
 
-function _M.match(coords,profile,options_match)
-	if not options_match then 
-		options_match = _M.defaults
-		options_match['steps'] = false
-		options_match['geometries'] = 'polyline'
-		options_match['annotations'] = false
-		options_match['overview'] = 'simplified'
-		options_match['gaps'] = 'split'
-		options_match['tidy'] = false
+function _M.match(coords,profile,options)
+	if not options then 
+		options = _M.defaults
+		options['steps'] = false
+		options['geometries'] = 'polyline'
+		options['annotations'] = false
+		options['overview'] = 'simplified'
+		options['gaps'] = 'split'
+		options['tidy'] = false
 	end
-	return get('match',coords,profile,options_match)
+	return get('match',coords,profile,options)
 end
 
-function _M.trip(coords,profile,options_trip)
-	if not options_trip then 
-		options_trip = _M.defaults
-		options_trip['roundtrip'] = true
-		options_trip['source'] = 'any'
-		options_trip['destination'] = 'any'
-		options_trip['steps'] = false
-		options_trip['annotations'] = false
-		options_trip['geometries'] = 'polyline'
-		options_trip['overview'] = 'simplified'
+function _M.trip(coords,profile,options)
+	if not options then 
+		options = _M.defaults
+		options['roundtrip'] = true
+		options['source'] = 'any'
+		options['destination'] = 'any'
+		options['steps'] = false
+		options['annotations'] = false
+		options['geometries'] = 'polyline'
+		options['overview'] = 'simplified'
 	end
-	return get('trip',coords,profile,options_trip)
+	return get('trip',coords,profile,options)
 end
 
 function _M.tile(x,y,zoom,profile)
